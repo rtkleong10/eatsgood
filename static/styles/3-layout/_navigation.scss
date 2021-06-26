@@ -1,0 +1,34 @@
+.mobile-header {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+
+        ul {
+            display: flex;
+        }
+    }
+}
+
+.nav-link {
+    a {
+        color: $black;
+        @include ease-transition(color);
+
+        &:hover, &:focus {
+            color: $mid-grey;
+        }
+    }
+
+    &.nav-link-pink-red a {
+        color: $pink-red;
+        @include ease-transition(color);
+
+        &:hover, &:focus {
+            color: $light-red;
+        }
+    }
+
+	&:not(:last-child) {
+	    margin-right: 20px;
+	}
+}

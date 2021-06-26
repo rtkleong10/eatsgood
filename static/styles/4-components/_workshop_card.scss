@@ -1,0 +1,44 @@
+.workshop-link {
+    display: block;
+    color: unset;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: $raised-shadow;
+
+    &:hover, &focus {
+        @include ease-transition(box-shadow);
+        box-shadow: $hover-shadow;
+    }
+}
+
+.workshop-card {
+    display: flex;
+
+    p {
+        margin: 0;
+        font-size: $small-font-size;
+    }
+}
+
+.workshop-card-img {
+    width: 120px;
+    object-fit: cover;
+}
+
+.workshop-card-content {
+    padding: 16px 14px;
+    flex-grow: 1;
+}
+
+.workshop-tags {
+    color: $mid-grey;
+}
+
+.workshop-country {
+    color: $dark-grey;
+}
+
+.workshop-attendees {
+    text-align: right;
+    color: $pink-red;
+}

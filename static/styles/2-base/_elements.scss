@@ -1,0 +1,67 @@
+body {
+	font: $p-font;
+}
+
+* {
+	outline: none;
+	box-sizing: border-box;
+}
+
+h1, h2, h3, p {
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+}
+
+h1 {
+	font: $h1-font;
+}
+
+h2 {
+	font: $h2-font;
+}
+
+p {
+	font: $p-font;
+}
+
+.small-text {
+    font-size: $small-font-size;
+}
+
+.dark-red-text {
+    color: $dark-red;
+}
+
+a {
+	text-decoration: none;
+	color: $black;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+	background: none;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+}
+
+@include media-breakpoint-down("xl") {
+	.br-xl {
+		display: none;
+	}
+}
+
+@include media-breakpoint-down("lg") {
+	.br-lg {
+		display: none;
+	}
+}

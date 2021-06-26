@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+// Font Families
+$nunito-sans: 'Nunito Sans', Helvetica, Arial, sans-serif;
+
+// Font Weights
+$regular-weight: 400;
+$medium-weight: 500;
+$bold-weight: 700;
+
+// Font Sizes
+$large-font-size: 22px;
+$medium-font-size: 20px;
+$normal-font-size: 18px;
+$extra-small-font-size: 13px;
+
+// Fonts
+$h1-font: $bold-weight 36px/1.2 $nunito-sans;
+$h2-font: $bold-weight 18px/1.6 $nunito-sans;
+$h3-font: $bold-weight 22px/1.6 $nunito-sans;
+$p-font: $regular-weight 14px $nunito-sans;
+$small-font-size: 11px;

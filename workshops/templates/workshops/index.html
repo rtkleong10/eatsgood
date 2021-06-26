@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}eatsgood{% endblock %}
+
+{% block content %}
+
+<header>
+	<div class="mobile-header container-no-padding my-40">
+		<nav class="navbar">
+			<h1 class="nav-logo"><img src="{% static 'imgs/logo.png' %}"></h1>
+			<ul>
+				<li class="nav-link"><a href="{% url 'registration:signup' %}">Sign Up</a></li>
+				<li class="nav-link"><a href="{% url 'registration:login' %}">Login</a></li>
+				<li class="nav-link nav-link-pink-red"><a href="{% url 'registration:signup' %}">Your Profile</a></li>
+				<li class="nav-link"><a href="{% url 'registration:login' %}">Logout</a></li>
+			</ul>
+		</nav>
+		<p class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</p>
+	</div>
+<!--	<div class="desktop-header container">-->
+<!--		<h1 class="nav-logo"><img src="{% static 'imgs/logo.png' %}"></h1>-->
+<!--		<nav class="navbar">-->
+<!--			<ul>-->
+<!--				<li><a href="{% url 'registration:signup' %}">Sign Up</a></li>-->
+<!--				<li><a href="{% url 'registration:login' %}">Login</a></li>-->
+<!--			</ul>-->
+<!--		</nav>-->
+<!--		<h2 class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</h2>-->
+<!--	</div>-->
+</header>
+<section>
+	<div class="jumbotron-bg">
+		<img class="jumbotron-mobile-img" src="{% static 'imgs/mobile-jumbotron.png' %}" />
+		<div class="container">
+			<div>
+				<label>Location</label>
+				<select>
+					<option value="" selected disabled>Select a country</option>
+					{% for country in countries %}
+						<option value="{{country.0}}">{{country.1}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div>
+				<input placeholder="Search for food you want to make">
+			</div>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="container">
+		<div>
+			<h2>Join Upcoming Cookouts</h2>
+			<a href="">View All</a>
+		</div>
+		<div class="workshop-cards">
+			{% for workshop in workshops %}
+				<a href="" class="workshop-link">
+					<div class="workshop-card">
+						<img class="workshop-card-img" src="{{workshop.cover_photo.url}}" />
+						<div class="workshop-card-content">
+							<p class="small-text">{{workshop.formatted_start_datetime}}</p>
+							{# TODO: Add URL link #}
+							<h3>{{workshop.title}}</h3>
+							<p class="workshop-tags">
+								{% for tag in workshop.tags.all %}
+									#{{tag.name}}
+								{% endfor %}
+							</p>
+							<p class="workshop-country"><strong>{{workshop.country.name}}</strong></p>
+							<p class="workshop-attendees">{{workshop.attendees.count}} attendee{% if workshop.attendees.count != 1 %}s{% endif %}</p>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<section>
+	<div class="container">
+		<h2>Cooked by fellow Singaporeans</h2>
+		<div>
+			{% for workshop_photo in workshop_photos %}
+				<img src="{{workshop_photo.photo.url}}" alt="{{workshop_photo.description}}" />
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<section>
+	<div class="container">
+		<h2>Nothing brings people together like good food</h2>
+	</div>
+</section>
+
+{% endblock %}

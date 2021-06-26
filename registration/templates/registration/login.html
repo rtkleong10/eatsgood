@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+
+<h1>Log In</h1>
+<div>
+	<form method="post">
+		{% include "form.html" %}
+		<button type="submit">Log In</button>
+	</form>
+	<br />
+	<p>Don't have an account? Please <a href="{% url 'registration:signup' %}">sign up here</a>.</p>
+</div>
+
+{% endblock %}
