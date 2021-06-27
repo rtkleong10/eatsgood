@@ -160,6 +160,13 @@ class WorkshopPost(models.Model):
 		editable=False,
 	)
 
+	workshop = models.ForeignKey(
+		help_text='Which workshop is this post related to',
+		to=Workshop,
+		on_delete=models.CASCADE,
+		related_name='posts',
+	)
+
 	author = models.ForeignKey(
 		help_text='The user this post belongs to.',
 		to=settings.AUTH_USER_MODEL,

@@ -6,7 +6,6 @@ from .models import Workshop, WorkshopPhoto
 
 @require_http_methods(['GET'])
 def index_view(request):
-	print([workshop for workshop in Workshop.objects.all()])
 	context = {
 		'countries': countries,
 		'workshops': [workshop for workshop in Workshop.objects.all() if workshop.is_open_for_registration],

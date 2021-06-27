@@ -26,12 +26,6 @@ class UserProfile(models.Model):
         max_length=200,
     )
 
-    description = models.CharField(
-        help_text='Describes the user.',
-        max_length=200,
-        blank=True
-    )
-
     interests = models.ManyToManyField(
         help_text='The tags that you are interested in.',
         to=Tag,
