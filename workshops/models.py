@@ -129,7 +129,7 @@ class Workshop(models.Model):
 		return self.title
 
 	class Meta:
-		ordering = ('-start_datetime',)
+		ordering = ('start_datetime',)
 
 
 class WorkshopPhoto(models.Model):
@@ -216,7 +216,7 @@ class WorkshopPost(models.Model):
 		return self.title
 
 	class Meta:
-		ordering = ('created_at',)
+		ordering = ('-created_at',)
 
 
 class WorkshopComment(models.Model):

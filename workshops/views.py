@@ -72,7 +72,7 @@ def workshop_upload(request, pk):
 
 		if form.is_valid():
 			form.save()
-			return redirect('workshops:workshop', pk=workshop.pk)
+			return redirect('registration:profile', username=request.user.username)
 
 	else:
 		form = WorkshopPhotoForm()
