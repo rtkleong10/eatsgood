@@ -38,6 +38,14 @@ a {
 	color: $black;
 }
 
+.link {
+    color: $pink-red;
+
+    &:hover, &:focus {
+        color: $mid-grey;
+    }
+}
+
 button {
 	border: none;
 	cursor: pointer;

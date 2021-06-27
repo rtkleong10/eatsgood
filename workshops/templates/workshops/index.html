@@ -6,56 +6,34 @@
 
 {% block content %}
 
-<header>
-	<div class="mobile-header container-no-padding my-40">
-		<nav class="navbar">
-			<h1 class="nav-logo"><img src="{% static 'imgs/logo.png' %}"></h1>
-			<ul>
-				<li class="nav-link"><a href="{% url 'registration:signup' %}">Sign Up</a></li>
-				<li class="nav-link"><a href="{% url 'registration:login' %}">Login</a></li>
-				<li class="nav-link nav-link-pink-red"><a href="{% url 'registration:signup' %}">Your Profile</a></li>
-				<li class="nav-link"><a href="{% url 'registration:login' %}">Logout</a></li>
-			</ul>
-		</nav>
-		<p class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</p>
-	</div>
-<!--	<div class="desktop-header container">-->
-<!--		<h1 class="nav-logo"><img src="{% static 'imgs/logo.png' %}"></h1>-->
-<!--		<nav class="navbar">-->
-<!--			<ul>-->
-<!--				<li><a href="{% url 'registration:signup' %}">Sign Up</a></li>-->
-<!--				<li><a href="{% url 'registration:login' %}">Login</a></li>-->
-<!--			</ul>-->
-<!--		</nav>-->
-<!--		<h2 class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</h2>-->
-<!--	</div>-->
-</header>
 <section>
-	<div class="jumbotron-bg">
-		<img class="jumbotron-mobile-img" src="{% static 'imgs/mobile-jumbotron.png' %}" />
-		<div class="container">
-			<div>
-				<label>Location</label>
-				<select>
+	<div class="img-bg-wrapper jumbotron-img-bg">
+		<img class="img-bg img-bg-mobile" src="{% static 'imgs/mobile-jumbotron.png' %}" />
+		<img class="img-bg img-bg-desktop" src="{% static 'imgs/desktop-jumbotron.png' %}" />
+		<form method="GET" class="jumbotron-content container">
+			<div class="jumbotron-location">
+				<label for="location">Location</label>
+				<select id="location" name="location">
 					<option value="" selected disabled>Select a country</option>
 					{% for country in countries %}
 						<option value="{{country.0}}">{{country.1}}</option>
 					{% endfor %}
 				</select>
 			</div>
-			<div>
-				<input placeholder="Search for food you want to make">
+			<div class="jumbotron-search">
+				<img src="{% static 'imgs/search.svg' %}" />
+				<input name="search-value" placeholder="Search for food you want to make">
 			</div>
-		</div>
+		</form>
 	</div>
 </section>
 <section>
 	<div class="container">
-		<div class="d-flex">
+		<div class="workshop-header">
 			<h2>Join Upcoming Cookouts</h2>
 			<a href="">View All</a>
 		</div>
-		<div class="workshop-cards">
+		<div class="grid">
 			{% for workshop in workshops %}
 				<a href="" class="workshop-link">
 					<div class="workshop-card">
@@ -74,24 +52,35 @@
 						</div>
 					</div>
 				</a>
-			{% endfor %}
+			{% empty %}
+				<p>Sorry, there's no upcoming cookouts right now.</p>
+		 	{% endfor %}
 		</div>
 	</div>
 </section>
 <section>
 	<div class="container">
 		<h2>Cooked by fellow Singaporeans</h2>
-		<div>
+		<div class="grid photo-gallery">
 			{% for workshop_photo in workshop_photos %}
 				<img src="{{workshop_photo.photo.url}}" alt="{{workshop_photo.description}}" />
-			{% endfor %}
+			{% empty %}
+				<p>Sorry, there's no workshop photos available yet.</p>
+		 	{% endfor %}
 		</div>
 	</div>
 </section>
-<section>
-	<div class="container">
-		<h2>Nothing brings people together like good food</h2>
+<footer>
+	<div class="img-bg-wrapper footer-img-bg">
+		<img class="img-bg img-bg-mobile" src="{% static 'imgs/mobile-footer.png' %}" />
+		<img class="img-bg img-bg-desktop" src="{% static 'imgs/desktop-footer.png' %}" />
+		<div class="container">
+			<p class="center footer-text">
+				Nothing brings people together<br>
+				like good food
+			</p>
+		</div>
 	</div>
-</section>
+</footer>
 
 {% endblock %}

@@ -1,0 +1,27 @@
+.img-bg-wrapper {
+    position: relative;
+}
+
+.img-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.img-bg-desktop {
+    display: none;
+}
+
+@include media-breakpoint-up(md) {
+    .img-bg-mobile {
+        display: none;
+    }
+
+    .img-bg-desktop {
+        display: block;
+    }
+}

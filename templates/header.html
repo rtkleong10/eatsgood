@@ -1,0 +1,40 @@
+{% load static %}
+
+<header>
+	<div class="mobile-header my-20">
+		<nav class="navbar">
+			<div class="container-no-padding">
+				<h1 class="nav-logo"><a href="{% url 'workshops:index' %}"><img src="{% static 'imgs/logo.svg' %}"></a></h1>
+				<ul>
+					{% if user.is_authenticated %}
+						<li class="nav-link nav-link-pink-red"><a href="{% url 'registration:profile' username=user.username %}">Your Profile</a></li>
+						<li class="nav-link"><a href="{% url 'registration:logout' %}">Logout</a></li>
+					{% else %}
+						<li class="nav-link"><a href="{% url 'registration:signup' %}">Sign Up</a></li>
+						<li class="nav-link"><a href="{% url 'registration:login' %}">Login</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+		<div class="container-no-padding">
+			<p class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</p>
+		</div>
+	</div>
+	<div class="desktop-header my-20">
+		<nav class="navbar">
+			<div class="container-no-padding">
+				<h1 class="nav-logo"><a href="{% url 'workshops:index' %}"><img src="{% static 'imgs/logo.svg' %}"></a></h1>
+				<h2 class="header-tagline">Missing <span class="dark-red-text">Singapore</span>? Come join our cooking hangouts!</h2>
+				<ul>
+					{% if user.is_authenticated %}
+						<li class="nav-link nav-link-pink-red"><a href="{% url 'registration:profile' username=user.username %}">Your Profile</a></li>
+						<li class="nav-link"><a href="{% url 'registration:logout' %}">Logout</a></li>
+					{% else %}
+						<li class="nav-link"><a href="{% url 'registration:signup' %}">Sign Up</a></li>
+						<li class="nav-link"><a href="{% url 'registration:login' %}">Login</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>

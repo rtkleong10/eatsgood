@@ -4,14 +4,14 @@
 
 {% block content %}
 
-<h1>Log In</h1>
-<div>
-	<form method="post">
+<div class="container">
+	<h2>Log In</h2>
+	<form method="post" class="form-group">
 		{% include "form.html" %}
-		<button type="submit">Log In</button>
+		<button class="btn" type="submit">Log In</button>
 	</form>
 	<br />
-	<p>Don't have an account? Please <a href="{% url 'registration:signup' %}">sign up here</a>.</p>
+	<p>Don't have an account? Please <a class="link" href="{% url 'registration:signup' %}">sign up here</a>.</p>
 </div>
 
 {% endblock %}

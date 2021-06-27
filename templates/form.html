@@ -1,40 +1,31 @@
 {% csrf_token %}
-{% for field in form.hidden_fields %}
-	<div class="field {% if field.field.required %}required{% endif %} {% if field.errors %}error{% endif %}">
-		{{ field }}
-		{% if field.errors %}
-			<div class="ui pointing red basic label">
-				{% for error in field.errors %}
-					<p>{{error}}</p>
-				{% endfor %}
-			</div>
-		{% endif %}
-		<div class="ui hidden divider"></div>
+{% if form.non_field_errors %}
+	<div class="form-error">
+		{% for error in form.non_field_errors %}
+			<p>
+				<small>{{error}}</small>
+			</p>
+		{% endfor %}
 	</div>
-{% endfor %}
+{% endif %}
 {% for field in form.visible_fields %}
 	<div class="field {% if field.field.required %}required{% endif %} {% if field.errors %}error{% endif %}">
 		{{ field.label_tag }}
 		{% if field.help_text %}
 			<p>
-				<small class="grey">{{ field.help_text }}</small>
+				<small class="form-help">{{ field.help_text }}</small>
 			</p>
 		{% endif %}
 		{{ field }}
 		{% if field.errors %}
-			<div class="ui pointing red basic label">
+			<div class="form-error">
 				{% for error in field.errors %}
-					<p>{{error}}</p>
+					<p>
+						<small>{{error}}</small>
+					</p>
 				{% endfor %}
 			</div>
 		{% endif %}
 		<div class="ui hidden divider"></div>
 	</div>
 {% endfor %}
-{% if form.non_field_errors %}
-	<div class="ui negative message">
-		{% for error in form.non_field_errors %}
-			<p>{{error}}</p>
-		{% endfor %}
-	</div>
-{% endif %}

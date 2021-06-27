@@ -1,0 +1,39 @@
+.workshop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    > * {
+        margin: 0;
+    }
+
+    a {
+        color: $mid-grey;
+        @include ease-transition(color);
+
+        &:hover, &:focus {
+            color: $pink-red;
+        }
+    }
+}
+
+.photo-gallery {
+    grid-gap: 10px;
+    margin-bottom: 30px;
+
+    > * {
+        grid-column: span 4;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: $drop-shadow;
+
+        @include media-breakpoint-up(md) {
+            grid-column: span 3;
+        }
+
+        @include media-breakpoint-up(xl) {
+            grid-column: span 2;
+        }
+    }
+}

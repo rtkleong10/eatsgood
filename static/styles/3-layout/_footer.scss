@@ -1,0 +1,11 @@
+.footer-img-bg {
+    height: 150px;
+}
+
+.footer-text {
+    font: $h2-font;
+
+    @include media-breakpoint-up(md) {
+        font-size: 20px;
+    }
+}

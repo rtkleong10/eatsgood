@@ -1,14 +1,67 @@
-.jumbotron-bg {
-    position: relative;
+.jumbotron-img-bg {
     height: 220px;
+
+    @include media-breakpoint-up(md) {
+        height: 300px;
+    }
 }
 
-.jumbotron-mobile-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.jumbotron-content {
     height: 100%;
-    object-fit: cover;
-    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.jumbotron-location {
+    display: flex;
+    margin-bottom: 8px;
+
+    label {
+        background: $darker-grey;
+        padding: 5px;
+        color: $white;
+    }
+
+    select {
+        border-radius: 0;
+        width: 100%;
+        flex-grow: 1;
+    }
+}
+
+.jumbotron-search {
+    display: flex;
+    align-items: center;
+    background: $white;
+    border: 1px solid $darker-grey;
+    border-radius: 10px;
+    padding: 5px 10px;
+
+    img {
+        margin-right: 10px;
+    }
+
+    input {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .jumbotron-content {
+        width: 650px;
+    }
+
+    .jumbotron-location {
+        justify-content: center;
+
+        select {
+            flex-grow: 0;
+            width: unset;
+        }
+    }
 }

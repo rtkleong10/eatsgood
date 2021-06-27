@@ -10,7 +10,7 @@
 
 .container {
 	@extend .container-no-padding;
-	padding: 60px 0;
+	padding: 20px 0;
 }
 
 .grid {
@@ -21,10 +21,6 @@
 	@include media-breakpoint-down("sm") {
 		grid-column-gap: 20px;
 	}
-}
-
-.d-flex {
-    display: flex;
 }
 
 .center {
