@@ -1,4 +1,7 @@
 # eatsgood
+A website that allows you to make friends through food. eatsgood is designed to help overseas Singaporeans connect with fellow Singaporeans to combat homesickness.
+
+
 ## How to Run
 1. Install Python
 2. `pip install -r requirements.txt`
