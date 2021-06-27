@@ -47,9 +47,16 @@ class Workshop(models.Model):
 		help_text='How long the workshop will be.',
 	)
 
-	url = models.URLField(
-		help_text='Link to the workshop.',
+	zoom_link = models.CharField(
+		help_text='Zoom link to the workshop.',
 		blank=True,
+		max_length=200,
+	)
+
+	zoom_passcode = models.CharField(
+		help_text='Zoom passcode to the workshop.',
+		blank=True,
+		max_length=200,
 	)
 
 	tags = models.ManyToManyField(
@@ -105,8 +112,18 @@ class Workshop(models.Model):
 		return timezone.now() >= self.start_datetime
 
 	@property
-	def formatted_start_datetime(self):
-		return self.start_datetime.astimezone(tz=self.timezone).strftime("%a, %b %-d · %-I:%M %p %Z")
+	def formatted_datetime(self):
+		local_start_datetime = self.start_datetime.astimezone(tz=self.timezone)
+		local_end_datetime = (self.start_datetime + self.duration).astimezone(tz=self.timezone)
+		if local_start_datetime.strftime("%a, %b %-d") == local_end_datetime.strftime("%a, %b %-d"):
+			if local_start_datetime.strftime("%p") == local_end_datetime.strftime("%p"):
+				return local_start_datetime.strftime("%a, %b %-d · %-I:%M") + local_end_datetime.strftime(" - %-I:%M %p %Z")
+			else:
+				return local_start_datetime.strftime("%a, %b %-d · %-I:%M %p") + local_end_datetime.strftime(
+					" - %-I:%M %p %Z")
+		else:
+			return local_start_datetime.strftime("%a, %b %-d · %-I:%M %p") + local_end_datetime.strftime(
+				" - %a, %b %-d · %-I:%M %p %Z")
 
 	def __str__(self):
 		return self.title
@@ -131,7 +148,7 @@ class WorkshopPhoto(models.Model):
 	)
 	
 	photo = models.ImageField(
-		help_text='The photo of taken by the user during the workshop.',
+		help_text='The photo taken by the user during the workshop.',
 		upload_to='workshop_photos',
 		max_length=200,
 	)

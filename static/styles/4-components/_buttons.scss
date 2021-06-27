@@ -1,7 +1,7 @@
 .btn {
 	display: inline-block;
 	background-color: $pink-red;
-	padding: 10px 40px;
+	padding: 8px 30px;
 	border-radius: 10px;
 	color: $white;
 	font-weight: $bold-weight;
@@ -11,8 +11,43 @@
 		background-color: $light-red;
 	}
 
-	&.btn-sm {
-		padding: 7px 25px;
-		font-size: $small-font-size;
+	&.btn-darker-grey {
+	    background-color: $darker-grey;
+
+	    &:hover, &:focus {
+            background-color: $mid-grey;
+        }
+	}
+
+	&.btn-white-outline {
+	    background-color: $white;
+	    color: $black;
+	    border: 1px solid $black;
+	    @include ease-transition(all);
+
+	    &:hover, &:focus {
+            color: $mid-grey;
+	        border: 1px solid $mid-grey;
+        }
+	}
+
+	&.btn-blue {
+	    background-color: $blue;
+
+	    &:hover, &:focus {
+            background-color: $mid-grey;
+        }
+	}
+
+	&.btn-blue-outline {
+	    background-color: $white;
+	    color: $blue;
+	    border: 1px solid $blue;
+	    @include ease-transition(all);
+
+	    &:hover, &:focus {
+            color: $mid-grey;
+	        border: 1px solid $mid-grey;
+        }
 	}
 }

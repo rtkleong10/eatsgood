@@ -1,0 +1,5 @@
+<a class="gallery-photo-link" href="{% url 'registration:profile' username=workshop_photo.author.username %}">
+	<div class="gallery-photo-div">
+		<img src="{{workshop_photo.photo.url}}" alt="{{workshop_photo.description}}" />
+	</div>
+</a>

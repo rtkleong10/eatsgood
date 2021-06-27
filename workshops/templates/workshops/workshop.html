@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{workshop.title}}{% endblock %}
+
+{% block content %}
+
+<section>
+	<div class="container pt-0">
+		<div class="workshop-header">
+			<p>Join this cookout and make</p>
+			<h2>{{workshop.title}}</h2>
+			<div class="workshop-header-img">
+				<img src="{{workshop.cover_photo.url}}" />
+			</div>
+		</div>
+	</div>
+</section>
+<section class="workshop-detail-wrapper">
+	<div class="container">
+		<div class="workshop-datetime">
+			<img src="{% static 'imgs/clock.svg' %}" alt="clock icon" />
+			<p>{{workshop.formatted_datetime}}</p>
+		</div>
+		{% if workshop.is_past_workshop %}
+			<p class="pink-red-text"><strong>Event Passed</strong></p>
+		{% endif %}
+		<div>
+			<div class="workshop-detail">
+				<p><strong>Description:</strong></p>
+				<p>{{workshop.description}}</p>
+			</div>
+			{% if user in workshop.attendees.all and workshop.zoom_link %}
+				<div class="workshop-detail">
+					<p><strong>Zoom Link:</strong></p>
+					<p><a class="link" href="{{workshop.zoom_link}}">{{workshop.zoom_link}}</a>{% if workshop.zoom_passcode %}<br>(Passcode: {{workshop.zoom_passcode}}){% endif %}</p>
+				</div>
+			{% endif %}
+			<p><strong>Location:</strong> {{workshop.description}}</p>
+			<p><strong>Tags:</strong> {% for tag in workshop.tags.all %}#{{tag.name}} {% endfor %}</p>
+		</div>
+		<div class="collapsible">
+			<input type="checkbox" class="collapsible-checkbox" id="ingredients-needed-checkbox">
+			<div class="collapsible-header">
+				<h3><strong>Ingredients Needed:</strong></h3>
+				<label for="ingredients-needed-checkbox"><img src="{% static 'imgs/chevron-up.svg' %}" /></label>
+			</div>
+			<div class="collapsible-content">
+				<p>{{workshop.ingredients|linebreaks}}</p>
+			</div>
+		</div>
+		<div class="collapsible">
+			<input type="checkbox" class="collapsible-checkbox" id="equipment-needed-checkbox">
+			<div class="collapsible-header">
+				<h3><strong>Equipment Needed:</strong></h3>
+				<label for="equipment-needed-checkbox"><img src="{% static 'imgs/chevron-up.svg' %}" /></label>
+			</div>
+			<div class="collapsible-content">
+				<p>{{workshop.equipment|linebreaks}}</p>
+			</div>
+		</div>
+		<div class="collapsible">
+			<input type="checkbox" class="collapsible-checkbox" id="forum-checkbox">
+			<div class="collapsible-header">
+				<h3><strong>Forum:</strong></h3>
+				<label for="forum-checkbox"><img src="{% static 'imgs/chevron-up.svg' %}" /></label>
+			</div>
+			<div class="collapsible-content">
+				<img class="mt-20" src="{% static 'imgs/blog-sample.png' %}" />
+			</div>
+		</div>
+	</div>
+</section>
+<section class="workshop-fixed">
+	<div class="container-no-padding">
+		<div class="workshop-attendees">
+			<img src="{% static 'imgs/smile.svg' %}" />
+			{% if user in workshop.attendees.all %}
+				<p>You and {{workshop.attendees.count|add:-1}} attendee{% if workshop.attendees.count != 2 %}s{% endif %}</p>
+			{% else %}
+				<p>{{workshop.attendees.count}} attendee{% if workshop.attendees.count != 1 %}s{% endif %}</p>
+			{% endif %}
+		</div>
+		{% if workshop.is_past_workshop %}
+			{% if user in workshop.attendees.all %}
+				{% if did_upload %}
+					<a href="{% url 'workshops:workshop-upload' pk=workshop.pk %}" class="btn btn-darker-grey">Uploaded</a>
+				{% else %}
+					<a href="{% url 'workshops:workshop-upload' pk=workshop.pk %}" class="btn btn-blue">Upload</a>
+				{% endif %}
+			{% endif %}
+		{% else %}
+			{% if user in workshop.attendees.all %}
+				<a href="{% url 'workshops:workshop-backout' pk=workshop.pk %}" class="btn btn-darker-grey">Backout</a>
+			{% else %}
+				<form method="POST" action="{% url 'workshops:workshop-signup' pk=workshop.pk %}">
+					{% csrf_token %}
+					<button type="submit" class="btn">Sign Up</button>
+				</form>
+			{% endif %}
+		{% endif %}
+	</div>
+</section>
+<section class="workshop-spacing">
+</section>
+
+{% endblock %}

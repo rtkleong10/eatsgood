@@ -1,0 +1,16 @@
+<a href="{% url 'workshops:workshop' pk=workshop.pk %}" class="workshop-card-link">
+	<div class="workshop-card">
+		<img class="workshop-card-img" src="{{workshop.cover_photo.url}}" />
+		<div class="workshop-card-content">
+			<p class="small-text">{{workshop.formatted_datetime}}</p>
+			<h3><strong>{{workshop.title}}</strong></h3>
+			<p class="workshop-card-tags">
+				{% for tag in workshop.tags.all %}
+					#{{tag.name}}
+				{% endfor %}
+			</p>
+			<p class="workshop-card-country"><strong>{{workshop.country.name}}</strong></p>
+			<p class="workshop-card-attendees">{{workshop.attendees.count}} attendee{% if workshop.attendees.count != 1 %}s{% endif %}</p>
+		</div>
+	</div>
+</a>

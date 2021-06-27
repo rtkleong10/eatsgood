@@ -11,7 +11,7 @@
 		<button class="btn" type="submit">Log In</button>
 	</form>
 	<br />
-	<p>Don't have an account? Please <a class="link" href="{% url 'registration:signup' %}">sign up here</a>.</p>
+	<p>Don't have an account? Please <a class="link" href="{% url 'registration:signup' %}{% if next_url %}?next={{next_url}}{% endif %}">sign up here</a>.</p>
 </div>
 
 {% endblock %}

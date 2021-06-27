@@ -10,12 +10,12 @@
 {% endif %}
 {% for field in form.visible_fields %}
 	<div class="field {% if field.field.required %}required{% endif %} {% if field.errors %}error{% endif %}">
-		{{ field.label_tag }}
-		{% if field.help_text %}
-			<p>
-				<small class="form-help">{{ field.help_text }}</small>
-			</p>
-		{% endif %}
+		<strong>{{ field.label_tag }}</strong>
+<!--		{% if field.help_text %}-->
+<!--			<p>-->
+<!--				<small class="form-help">{{ field.help_text }}</small>-->
+<!--			</p>-->
+<!--		{% endif %}-->
 		{{ field }}
 		{% if field.errors %}
 			<div class="form-error">

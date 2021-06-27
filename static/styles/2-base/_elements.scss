@@ -21,7 +21,7 @@ h2 {
 	font: $h2-font;
 }
 
-p {
+h3, p {
 	font: $p-font;
 }
 
@@ -29,8 +29,12 @@ p {
     font-size: $small-font-size;
 }
 
-.dark-red-text {
-    color: $dark-red;
+.pink-red-text {
+    color: $pink-red;
+}
+
+.mid-grey-text {
+    color: $mid-grey;
 }
 
 a {

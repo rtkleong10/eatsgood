@@ -1,0 +1,43 @@
+.gallery-photos {
+    grid-gap: 10px;
+    margin-bottom: 30px;
+}
+
+.gallery-photo-link {
+    display: block;
+    grid-column: span 4;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: $drop-shadow;
+    overflow: hidden;
+    @include ease-transition(box-shadow);
+
+    @include media-breakpoint-up(md) {
+        grid-column: span 3;
+    }
+
+    @include media-breakpoint-up(xl) {
+        grid-column: span 2;
+    }
+
+    &:hover, &:focus {
+        box-shadow: $hover-shadow;
+    }
+}
+
+.gallery-photo-div {
+    position: relative;
+
+    &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

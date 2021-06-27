@@ -1,0 +1,43 @@
+.collapsible {
+    margin-bottom: 20px;
+}
+
+.collapsible-checkbox {
+    display: none;
+}
+
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $mid-grey;
+    padding: 5px 0;
+
+    h3 {
+        margin: 0;
+    }
+
+    label {
+        @include ease-transition(transform);
+        cursor: pointer;
+    }
+}
+
+.collapsible-content {
+    overflow-y: hidden;
+	max-height: 0;
+	@include ease-transition(max-height, 0.5s);
+}
+
+.collapsible-checkbox:checked {
+    ~ .collapsible-header {
+        label {
+            transform: scaleY(-1);
+        }
+    }
+
+    ~ .collapsible-content {
+        display: block;
+		max-height: 1000px;
+    }
+}

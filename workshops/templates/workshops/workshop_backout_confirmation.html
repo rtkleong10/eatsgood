@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{workshop.title}} | Backout Confirmation{% endblock %}
+
+{% block content %}
+
+<section>
+	<div class="container pt-0">
+		<h2>Do you want to backout of this cookout?</h2>
+		<div class="flex">
+			<form method="POST" action="{% url 'workshops:workshop-backout' pk=workshop.pk %}" class="mr-10">
+				{% csrf_token %}
+				<button type="submit" class="btn btn-white-outline">Yes</button>
+			</form>
+			<a class="btn btn-darker-grey" href="{% url 'workshops:workshop' pk=workshop.pk %}">No</a>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
+

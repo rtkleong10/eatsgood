@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{workshop.title}} | Photo Upload{% endblock %}
+
+{% block content %}
+
+<section>
+	<div class="container pt-0">
+		<div class="workshop-header">
+			<p>Keep a memory of your cookout</p>
+			<div class="workshop-header-img">
+				<img id="workshop-photo" src="{{workshop.cover_photo.url}}" />
+			</div>
+		</div>
+	</div>
+</section>
+<section>
+	<form method="post" class="form-group" enctype="multipart/form-data">
+		<div class="container">
+			{% include "form.html" %}
+		</div>
+		<div class="workshop-fixed">
+			<div class="container-no-padding">
+				<div></div>
+				<div>
+					<a href="{% url 'workshops:workshop' pk=workshop.pk %}" class="btn btn-blue-outline mr-10">Cancel</a>
+					<button class="btn btn-blue" type="submit">Upload</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+<section class="workshop-spacing">
+</section>
+<script>
+	window.onload = function() {
+		function readURL(input) {
+			if (input.target.files && input.target.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					let img = document.getElementById('workshop-photo');
+					img.setAttribute("src", e.target.result);
+				};
+
+				reader.readAsDataURL(input.target.files[0]);
+			}
+		}
+		document.getElementById('id_photo').addEventListener('change', readURL);
+    }
+</script>
+
+{% endblock %}

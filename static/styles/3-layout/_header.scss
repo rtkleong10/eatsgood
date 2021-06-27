@@ -1,6 +1,5 @@
 .navbar {
     border-bottom: 1px solid #EBEDEF;
-    margin-bottom: 10px;
 
     > div {
         display: flex;
@@ -36,22 +35,29 @@
 	}
 }
 
-.desktop-header {
+.nav-tagline-mobile {
+    margin-top: 10px;
+}
+
+.nav-tagline-desktop {
     display: none;
 }
 
 @include media-breakpoint-up(lg) {
-    .mobile-header {
+    .navbar {
+        margin-top: 50px;
+        margin-bottom: -10px;
+    }
+
+    .navbar-with-tagline {
+        border-bottom: none;
+    }
+
+    .nav-tagline-mobile {
         display: none;
     }
 
-    .desktop-header {
+    .nav-tagline-desktop {
         display: block;
-    }
-
-    .navbar {
-        border-bottom: none;
-        margin-bottom: -10px;
-        margin-top: 50px;
     }
 }

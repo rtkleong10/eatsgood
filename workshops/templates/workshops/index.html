@@ -4,6 +4,8 @@
 
 {% block title %}eatsgood{% endblock %}
 
+{% block header %}{% include 'header-tagline.html' %}{% endblock %}
+
 {% block content %}
 
 <section>
@@ -21,7 +23,7 @@
 				</select>
 			</div>
 			<div class="jumbotron-search">
-				<img src="{% static 'imgs/search.svg' %}" />
+				<img src="{% static 'imgs/search.svg' %}" alt="search-icon" />
 				<input name="search-value" placeholder="Search for food you want to make">
 			</div>
 		</form>
@@ -29,45 +31,33 @@
 </section>
 <section>
 	<div class="container">
-		<div class="workshop-header">
+		<div class="workshop-list-header">
 			<h2>Join Upcoming Cookouts</h2>
 			<a href="">View All</a>
 		</div>
-		<div class="grid">
-			{% for workshop in workshops %}
-				<a href="" class="workshop-link">
-					<div class="workshop-card">
-						<img class="workshop-card-img" src="{{workshop.cover_photo.url}}" />
-						<div class="workshop-card-content">
-							<p class="small-text">{{workshop.formatted_start_datetime}}</p>
-							{# TODO: Add URL link #}
-							<h3>{{workshop.title}}</h3>
-							<p class="workshop-tags">
-								{% for tag in workshop.tags.all %}
-									#{{tag.name}}
-								{% endfor %}
-							</p>
-							<p class="workshop-country"><strong>{{workshop.country.name}}</strong></p>
-							<p class="workshop-attendees">{{workshop.attendees.count}} attendee{% if workshop.attendees.count != 1 %}s{% endif %}</p>
-						</div>
-					</div>
-				</a>
-			{% empty %}
-				<p>Sorry, there's no upcoming cookouts right now.</p>
-		 	{% endfor %}
-		</div>
+		{% if workshops|length > 0 %}
+			<div class="grid">
+				{% for workshop in workshops %}
+					{% include 'workshops/workshop_card.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">Sorry, there's no upcoming cookouts right now</p>
+		{% endif %}
 	</div>
 </section>
 <section>
 	<div class="container">
 		<h2>Cooked by fellow Singaporeans</h2>
-		<div class="grid photo-gallery">
-			{% for workshop_photo in workshop_photos %}
-				<img src="{{workshop_photo.photo.url}}" alt="{{workshop_photo.description}}" />
-			{% empty %}
-				<p>Sorry, there's no workshop photos available yet.</p>
-		 	{% endfor %}
-		</div>
+		{% if workshop_photos|length > 0 %}
+			<div class="grid gallery-photos">
+				{% for workshop_photo in workshop_photos %}
+					{% include 'workshops/gallery_photo.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">Sorry, there's no workshop photos available yet</p>
+		{% endif %}
 	</div>
 </section>
 <footer>

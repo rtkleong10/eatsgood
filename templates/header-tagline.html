@@ -2,13 +2,14 @@
 
 <header>
 	<div class="my-20">
-		<nav class="navbar">
+		<nav class="navbar navbar-with-tagline">
 			<div class="container-no-padding">
 				<h1 class="nav-logo"><a href="{% url 'workshops:index' %}"><img src="{% static 'imgs/logo.svg' %}" alt="eatsgood"></a></h1>
+				<h2 class="nav-tagline-desktop">Missing <span class="pink-red-text">Singapore</span>? Come join our cooking hangouts!</h2>
 				<ul>
 					{% if user.is_authenticated %}
 						<li class="nav-link nav-link-pink-red"><a href="{% url 'registration:profile' username=user.username %}">My Profile</a></li>
-						<li class="nav-link"><a href="{% url 'registration:logout' %}?next={{ request.get_full_path|urlencode }}">Logout</a></li>
+						<li class="nav-link"><a href="{% url 'registration:logout' %}">Logout</a></li>
 					{% else %}
 						<li class="nav-link"><a href="{% url 'registration:signup' %}">Sign Up</a></li>
 						<li class="nav-link"><a href="{% url 'registration:login' %}">Login</a></li>
@@ -16,5 +17,8 @@
 				</ul>
 			</div>
 		</nav>
+		<div class="container-no-padding">
+			<p class="nav-tagline-mobile">Missing <span class="pink-red-text">Singapore</span>? Come join our cooking hangouts!</p>
+		</div>
 	</div>
 </header>

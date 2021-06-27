@@ -1,12 +1,97 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profile | {{user_profile.user.username}}{% endblock %}
 
 {% block content %}
 
-<div class="container">
-	<h2>Profile</h2>
-
-</div>
+<section>
+	<div class="container">
+		<div class="profile-header">
+			<h2>Profile</h2>
+			{% if user == user_profile.user %}
+				<a href="" class="profile-edit">
+					<div class="profile-edit-img">
+						<img class="profile-edit-img-grey" src="{% static 'imgs/edit.svg' %}" />
+						<img class="profile-edit-img-pink-red" src="{% static 'imgs/edit-pink-red.svg' %}" />
+					</div>
+					Edit Profile
+				</a>
+			{% endif %}
+		</div>
+		<div>
+			<p class="profile-label">Username:</p>
+			<p>@{{user_profile.user.username}}</p>
+		</div>
+		<div>
+			<p class="profile-label">Location:</p>
+			<p>{% if user_profile.country %}{{user_profile.country}}{% else %}Not specified{% endif %}</p>
+		</div>
+	</div>
+</section>
+{% if user == user_profile.user %}
+	<section>
+		<div class="container profile-create">
+			<p class="pink-red-text">Have a recipe to share?</p>
+			<a class="btn" href="">Organise a Cookout</a>
+		</div>
+	</section>
+{% endif %}
+<section>
+	<div class="container">
+		<h3>Cookouts Organised by Me ({{created_workshops|length}})</h3>
+		{% if created_workshops|length > 0 %}
+			<div class="grid">
+				{% for workshop in created_workshops %}
+					{% include 'workshops/workshop_card.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">You have not organised a cookout yet</p>
+		{% endif %}
+	</div>
+</section>
+<section>
+	<div class="container">
+		<h3>My Upcoming Cookouts ({{upcoming_workshops|length}})</h3>
+		{% if upcoming_workshops|length > 0 %}
+			<div class="grid">
+				{% for workshop in upcoming_workshops %}
+					{% include 'workshops/workshop_card.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">You don't have any upcoming workshops</p>
+		{% endif %}
+	</div>
+</section>
+<section>
+	<div class="container">
+		<h3>Completed Cookouts ({{completed_workshops|length}})</h3>
+		{% if completed_workshops|length > 0 %}
+			<div class="grid">
+				{% for workshop in completed_workshops %}
+					{% include 'workshops/workshop_card.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">You have not completed a cookout yet</p>
+		{% endif %}
+	</div>
+</section>
+<section>
+	<div class="container">
+		<h3>My Gallery</h3>
+		{% if workshop_photos|length > 0 %}
+			<div class="grid gallery-photos">
+				{% for workshop_photo in workshop_photos %}
+					{% include 'workshops/gallery_photo.html' %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="mid-grey-text">You have not uploaded a photo yet</p>
+		{% endif %}
+	</div>
+</section>
 
 {% endblock %}
