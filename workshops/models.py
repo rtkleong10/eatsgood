@@ -5,7 +5,6 @@ from django.conf import settings
 from django.db import models
 from timezone_field import TimeZoneField
 from django_countries.fields import CountryField
-import pytz
 
 
 class Tag(models.Model):
