@@ -5,7 +5,6 @@ from django.core.files.storage import Storage
 
 class FirebaseStorage(Storage):
 	def __init__(self):
-		print(settings.FIREBASE_CONFIG)
 		self.firebase = pyrebase.initialize_app(settings.FIREBASE_CONFIG)
 
 	def _save(self, name, content):
