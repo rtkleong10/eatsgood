@@ -9,7 +9,7 @@
   - [Our demo video](https://www.youtube.com/watch?v=c28_cuVBFHw)
   - [Our slides](https://drive.google.com/file/d/11dfTzlD_OaFeg8ywv8Fz2HFht5Aqa-ln/view?usp=sharing)
   - [Our interactive prototype](https://www.figma.com/proto/qxhsQmoZxJ9aXiiZOfzerJ/eatsgood?node-id=38%3A5&scaling=scale-down&page-id=34%3A2)
-  - [Our minimum viable product](https://eatsgood.herokuapp.com/)
+  - Our minimum viable product (taken down due to the [removal of Heroku's free plan](https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq))
 
 ## How to Run
 1. Install Python
